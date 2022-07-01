@@ -1,0 +1,12 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+logging:
+  level:
+    "[org.springframework]": INFO
+    "[com.in28minutes.springboot]": DEBUG
