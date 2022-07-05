@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -18,9 +19,11 @@ public class TodoService {
   private static List<Todo> todos = new ArrayList<>();
   private static int todosCount = 0;
   static {
-    todos.add(new Todo(++todosCount, "in28minutes", "Learn Full Stack Java Cource", LocalDate.now().plusYears(1), false));
+    todos.add(
+        new Todo(++todosCount, "in28minutes", "Learn Full Stack Java Cource", LocalDate.now().plusYears(1), false));
     todos.add(new Todo(++todosCount, "in28minutes", "Learn AWS", LocalDate.now().plusYears(1), false));
-    todos.add(new Todo(++todosCount, "in28minutes", "Learn Functional Programming", LocalDate.now().plusYears(1), false));
+    todos.add(
+        new Todo(++todosCount, "in28minutes", "Learn Functional Programming", LocalDate.now().plusYears(1), false));
     todos.add(new Todo(++todosCount, "in28minutes", "Learn CI/CD using Jenkins", LocalDate.now().plusYears(1), false));
     todos.add(new Todo(++todosCount, "in28minutes", "Learn Kubenates", LocalDate.now().plusYears(1), false));
   }
@@ -28,7 +31,7 @@ public class TodoService {
   public List<Todo> findByUsername(String username) {
 
     Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
-    return todos.stream().filter(predicate).toList();
+    return todos.stream().filter(predicate).collect(Collectors.toList());
   }
 
   public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
